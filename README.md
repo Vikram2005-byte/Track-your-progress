@@ -18,7 +18,7 @@ A small browser-based task manager for keeping everyday tasks in one place. It r
 
        git clone https://github.com/Vikram2005-byte/Track-your-progress.git
 
-2. Open the folder and launch \`index.html\` in your browser.
+2. Open the folder and launch `index.html` in your browser.
 
 For a local web server, open a terminal in the project folder and run:
 
@@ -28,12 +28,12 @@ Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000). Keep the terminal ope
 
 ## How your tasks are saved
 
-Tasks are stored in this browser's \`localStorage\`. They don't sync to another device, and clearing browser site data will remove them. The app has no backend or sign-in system. The Undo control restores the most recently deleted task during the current session; task data itself persists in browser storage.
+Tasks are stored in this browser's `localStorage`. They don't sync to another device, and clearing browser site data will remove them. The app has no backend or sign-in system. The Undo control restores the most recently deleted task during the current session; task data itself persists in browser storage.
 
 ## A quick look at the files
 
-- \`index.html\` — input, filters, task list, and undo notice
-- \`style.css\` — layout, inline editor, and responsive styling
-- \`script.js\` — task actions, inline editing, filtering, undo, and storage
+- `index.html` — input, filters, task list, and undo notice
+- `style.css` — layout, inline editor, and responsive styling
+- `script.js` — task actions, inline editing, filtering, undo, and storage
 
 This is an evolving front-end project. The next planned improvements are due dates, priorities, search, and export/import.

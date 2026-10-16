@@ -331,3 +331,110 @@ h1 {
         transition-duration: 0.01ms !important;
     }
 }
+
+
+/* Inline task editor */
+#task-list li.is-editing {
+    align-items: stretch;
+}
+
+.task-editor {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.task-editor input {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #d3dbea;
+    border-radius: 10px;
+    color: var(--ink);
+    background: #fbfcff;
+}
+
+.task-editor-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.task-editor-actions button {
+    min-height: 40px;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    background: #fff;
+    color: #4b5871;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.task-editor-actions .editor-save {
+    color: #fff;
+    border-color: var(--brand);
+    background: var(--brand);
+}
+
+.task-editor-actions .editor-save:hover {
+    background: var(--brand-hover);
+}
+
+.task-editor-actions .cancel-edit:hover {
+    background: #f1f4fa;
+}
+
+/* Undo notice remains available until another deletion or the user restores the task. */
+.undo-notice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 12px 0 4px;
+    padding: 12px 14px;
+    border: 1px solid #d5e3ff;
+    border-radius: 12px;
+    color: #29406f;
+    background: #f4f7ff;
+    line-height: 1.45;
+}
+
+.undo-notice[hidden],
+.task-editor-actions button[hidden] {
+    display: none;
+}
+
+.undo-notice span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.button-secondary {
+    flex-shrink: 0;
+    color: var(--brand);
+    border: 1px solid #c9d6f8;
+    background: #fff;
+}
+
+@media (max-width: 560px) {
+    .task-editor {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .task-editor-actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .task-editor-actions button {
+        width: 100%;
+    }
+
+    .undo-notice {
+        align-items: stretch;
+    }
+}

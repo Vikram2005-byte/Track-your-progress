@@ -438,3 +438,289 @@ h1 {
         align-items: stretch;
     }
 }
+
+
+/* Calendar and due-date controls */
+.task-due-entry {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 8px 14px;
+    margin-top: 14px;
+}
+
+.task-due-entry label {
+    color: var(--ink);
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.task-due-entry label span {
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.task-due-entry input {
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 12px;
+    border: 1px solid #d3dbea;
+    border-radius: 10px;
+    color: var(--ink);
+    background: #fbfcff;
+}
+
+#due-date-hint {
+    grid-column: 2;
+    margin: -2px 0 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.45;
+}
+
+.calendar-section {
+    margin: 28px 0 25px;
+    padding-top: 23px;
+    border-top: 1px solid var(--line);
+}
+
+.calendar-header,
+.calendar-month-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.calendar-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    letter-spacing: -0.025em;
+}
+
+.calendar-subtitle {
+    margin: 5px 0 0;
+    color: var(--muted);
+    font-size: 0.86rem;
+    line-height: 1.5;
+}
+
+.calendar-navigation {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.calendar-navigation button,
+.clear-date-filter {
+    min-height: 38px;
+    padding: 7px 11px;
+    border: 1px solid var(--line);
+    border-radius: 9px;
+    color: #4b5871;
+    background: white;
+    font-weight: 700;
+}
+
+.calendar-navigation button:hover,
+.clear-date-filter:hover {
+    background: #f1f4fa;
+}
+
+.calendar-navigation .calendar-nav-button {
+    min-width: 38px;
+    padding: 4px 10px;
+    font-size: 1.3rem;
+    line-height: 1;
+}
+
+.calendar-navigation .calendar-today-button {
+    color: var(--brand);
+    border-color: #c9d6f8;
+}
+
+.calendar-month-row {
+    margin: 20px 0 10px;
+}
+
+.calendar-month-row h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.clear-date-filter {
+    min-height: 32px;
+    padding: 5px 9px;
+    font-size: 0.8rem;
+}
+
+.clear-date-filter[hidden] {
+    display: none;
+}
+
+.calendar-weekdays,
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 5px;
+}
+
+.calendar-weekdays {
+    margin-bottom: 5px;
+}
+
+.calendar-weekdays span {
+    padding: 7px 2px;
+    color: var(--muted);
+    font-size: 0.74rem;
+    font-weight: 750;
+    text-align: center;
+}
+
+.calendar-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    min-width: 0;
+    min-height: 72px;
+    padding: 8px 3px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    color: var(--ink);
+    background: #fff;
+    text-align: center;
+}
+
+.calendar-day:hover {
+    border-color: #b6c7f2;
+    background: #f7f9ff;
+}
+
+.calendar-day.other-month {
+    color: #9aa3b3;
+    background: #f8f9fc;
+}
+
+.calendar-day.today .calendar-day-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    color: #fff;
+    background: var(--brand);
+}
+
+.calendar-day.selected {
+    border-color: var(--brand);
+    box-shadow: inset 0 0 0 1px var(--brand);
+    background: #f2f5ff;
+}
+
+.calendar-day.selected .calendar-day-number {
+    font-weight: 800;
+}
+
+.calendar-day-count {
+    max-width: 100%;
+    overflow: hidden;
+    color: var(--brand);
+    font-size: 0.65rem;
+    font-weight: 750;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.calendar-help {
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+.task-copy {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.task-copy .task-text {
+    width: 100%;
+}
+
+.task-due-date {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 7px;
+    border: 1px solid #dce4f5;
+    border-radius: 6px;
+    color: #51617e;
+    background: #f6f8fc;
+    font-size: 0.73rem;
+    font-weight: 750;
+    line-height: 1.35;
+}
+
+.task-due-date.due-today {
+    color: #8b5b00;
+    border-color: #f0dba7;
+    background: #fff9e9;
+}
+
+.task-due-date.overdue {
+    color: #a52e36;
+    border-color: #f0c9cc;
+    background: #fff3f4;
+}
+
+.task-editor {
+    grid-template-columns: minmax(0, 1fr) minmax(145px, 0.65fr) auto;
+}
+
+.task-editor input[type="date"] {
+    width: 100%;
+}
+
+@media (max-width: 620px) {
+    .calendar-weekdays,
+    .calendar-grid {
+        gap: 3px;
+    }
+
+    .calendar-day {
+        min-height: 58px;
+        gap: 4px;
+        padding: 6px 1px;
+        border-radius: 8px;
+        font-size: 0.85rem;
+    }
+
+    .calendar-day-count {
+        font-size: 0.57rem;
+        letter-spacing: -0.02em;
+    }
+
+    .calendar-weekdays span {
+        font-size: 0.68rem;
+    }
+
+    .task-due-entry {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #due-date-hint {
+        grid-column: 1;
+    }
+
+    .task-editor {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

@@ -22,4 +22,4 @@ Alternatively, run **python -m http.server 8000** in the project folder and visi
 - **script.js** — task operations and filters
 
 ## Data storage
-Tasks are currently held in page memory only. Refreshing or closing the page clears the task list; persistent browser storage or a backend has not been added yet.
+Tasks are saved in the browser's `localStorage`, so they remain available after refreshing the page in the same browser. The app does not sync tasks across devices or use a backend. Clearing the browser's site data removes saved tasks.

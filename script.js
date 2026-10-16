@@ -4,8 +4,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const taskList = document.getElementById("task-list");
     const filterButtons = document.querySelectorAll(".filters button");
 
-    let tasks = [];
+    const storageKey = "track-your-progress:tasks";
+    let tasks = loadTasks();
     let currentFilter = "all";
+
+    function loadTasks() {
+        try {
+            const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
+            if (!Array.isArray(saved)) return [];
+            return saved.filter((task) =>
+                task &&
+                Number.isFinite(task.id) &&
+                typeof task.text === "string" &&
+                typeof task.completed === "boolean"
+            );
+        } catch {
+            return [];
+        }
+    }
+
+    function saveTasks() {
+        try {
+            localStorage.setItem(storageKey, JSON.stringify(tasks));
+        } catch {
+            // The task list continues to work for this page if browser storage is unavailable.
+        }
+    }
 
     addTaskButton.addEventListener("click", addTask);
     taskInput.addEventListener("keydown", (event) => {
@@ -20,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         tasks.push({ id: Date.now() + Math.random(), text, completed: false });
+        saveTasks();
         taskInput.value = "";
         renderTasks();
         taskInput.focus();
@@ -48,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        saveTasks();
         renderTasks();
     });
 
@@ -91,4 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
             taskList.appendChild(li);
         });
     }
+
+    renderTasks();
 });

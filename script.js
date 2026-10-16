@@ -1,68 +1,93 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const taskInput = document.getElementById('new-task');
-    const addTaskButton = document.getElementById('add-task');
-    const taskList = document.getElementById('task-list');
-    const filterButtons = document.querySelectorAll('.filters button');
+document.addEventListener("DOMContentLoaded", () => {
+    const taskInput = document.getElementById("new-task");
+    const addTaskButton = document.getElementById("add-task");
+    const taskList = document.getElementById("task-list");
+    const filterButtons = document.querySelectorAll(".filters button");
 
     let tasks = [];
+    let currentFilter = "all";
 
-    addTaskButton.addEventListener('click', () => {
-        const taskText = taskInput.value.trim();
-        if (taskText) {
-            const task = {
-                id: Date.now(),
-                text: taskText,
-                completed: false
-            };
-            tasks.push(task);
-            taskInput.value = '';
-            renderTasks();
-        }
+    addTaskButton.addEventListener("click", addTask);
+    taskInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") addTask();
     });
 
-    taskList.addEventListener('click', (e) => {
-        if (e.target.classList.contains('delete')) {
-            const taskId = e.target.parentElement.dataset.id;
-            tasks = tasks.filter(task => task.id != taskId);
-            renderTasks();
-        } else if (e.target.classList.contains('edit')) {
-            const taskId = e.target.parentElement.dataset.id;
-            const newText = prompt('Edit task:', e.target.parentElement.querySelector('.task-text').textContent);
-            if (newText) {
-                tasks = tasks.map(task => task.id == taskId ? { ...task, text: newText } : task);
-                renderTasks();
-            }
-        } else if (e.target.classList.contains('toggle')) {
-            const taskId = e.target.parentElement.dataset.id;
-            tasks = tasks.map(task => task.id == taskId ? { ...task, completed: !task.completed } : task);
-            renderTasks();
+    function addTask() {
+        const text = taskInput.value.trim();
+        if (!text) {
+            taskInput.focus();
+            return;
         }
+
+        tasks.push({ id: Date.now() + Math.random(), text, completed: false });
+        taskInput.value = "";
+        renderTasks();
+        taskInput.focus();
+    }
+
+    taskList.addEventListener("click", (event) => {
+        const button = event.target.closest("button");
+        const listItem = button?.closest("li");
+        if (!button || !listItem) return;
+
+        const taskId = Number(listItem.dataset.id);
+        if (button.classList.contains("delete")) {
+            tasks = tasks.filter((task) => task.id !== taskId);
+        } else if (button.classList.contains("edit")) {
+            const task = tasks.find((item) => item.id === taskId);
+            if (!task) return;
+
+            const newText = prompt("Edit task:", task.text);
+            if (newText === null || !newText.trim()) return;
+            task.text = newText.trim();
+        } else if (button.classList.contains("toggle")) {
+            const task = tasks.find((item) => item.id === taskId);
+            if (!task) return;
+            task.completed = !task.completed;
+        } else {
+            return;
+        }
+
+        renderTasks();
     });
 
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            renderTasks(button.dataset.filter);
+    filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            currentFilter = button.dataset.filter || "all";
+            filterButtons.forEach((item) => item.classList.toggle("active", item === button));
+            renderTasks();
         });
     });
 
-    function renderTasks(filter = 'all') {
-        taskList.innerHTML = '';
-        const filteredTasks = tasks.filter(task => {
-            if (filter === 'completed') return task.completed;
-            if (filter === 'pending') return !task.completed;
+    function createButton(className, label) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = className;
+        button.textContent = label;
+        return button;
+    }
+
+    function renderTasks() {
+        taskList.replaceChildren();
+
+        const visibleTasks = tasks.filter((task) => {
+            if (currentFilter === "completed") return task.completed;
+            if (currentFilter === "pending") return !task.completed;
             return true;
         });
-        filteredTasks.forEach(task => {
-            const li = document.createElement('li');
-            li.dataset.id = task.id;
-            li.innerHTML = `
-                <span class="task-text ${task.completed ? 'completed' : ''}">${task.text}</span>
-                <button class="toggle">${task.completed ? 'Undo' : 'Complete'}</button>
-                <button class="edit">Edit</button>
-                <button class="delete">Delete</button>
-            `;
+
+        visibleTasks.forEach((task) => {
+            const li = document.createElement("li");
+            li.dataset.id = String(task.id);
+
+            const text = document.createElement("span");
+            text.className = "task-text" + (task.completed ? " completed" : "");
+            text.textContent = task.text;
+            li.appendChild(text);
+
+            li.appendChild(createButton("toggle", task.completed ? "Undo" : "Complete"));
+            li.appendChild(createButton("edit", "Edit"));
+            li.appendChild(createButton("delete", "Delete"));
             taskList.appendChild(li);
         });
     }

@@ -60,7 +60,9 @@ document.addEventListener("DOMContentLoaded", () => {
         lastDeletedIndex = -1;
         renderTasks();
         undoDeleteButton.hidden = true;
-        undoMessage.textContent = "Task restored.";
+        undoNotice.hidden = true;
+        undoMessage.textContent = "";
+        taskSummary.textContent = "Task restored.";
     });
 
     function addTask() {

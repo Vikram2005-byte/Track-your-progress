@@ -1,14 +1,16 @@
 # Track Your Progress
 
-A small to-do list for keeping everyday tasks in one place. It runs in the browser, so there is no account to create and nothing to install.
+A small browser-based task manager for keeping everyday tasks in one place. It runs locally in your browser, so there is no account to create and nothing to install.
 
 ## What it can do
 
 - Add a task, then mark it complete when you're done.
-- Edit a task or remove it from the list.
+- Edit a task inline, with Save and Cancel controls.
+- Press **Enter** to save an edit or **Escape** to cancel it.
+- Delete a task and undo the most recent deletion.
 - Filter the list to see everything, completed tasks, or tasks still to do.
-- Keep your tasks after refreshing the page using browser storage.
-- Use it on a phone or a desktop browser.
+- Keep tasks after refreshing the page using browser storage.
+- Use it on a phone or desktop browser.
 
 ## Try it on your computer
 
@@ -26,12 +28,12 @@ Then visit [http://127.0.0.1:8000](http://127.0.0.1:8000). Keep the terminal ope
 
 ## How your tasks are saved
 
-Tasks are stored in this browser's `localStorage`. They don't sync to another device, and clearing browser site data will remove them. The app has no backend or sign-in system.
+Tasks are stored in this browser's `localStorage`. They don't sync to another device, and clearing browser site data will remove them. The app has no backend or sign-in system. The Undo control restores the most recently deleted task during the current session; task data itself persists in browser storage.
 
 ## A quick look at the files
 
-- `index.html` — input, filters, and task list
-- `style.css` — layout and responsive styling
-- `script.js` — add, edit, complete, delete, filtering, and storage
+- `index.html` — input, filters, task list, and undo notice
+- `style.css` — layout, inline editor, and responsive styling
+- `script.js` — task actions, inline editing, filtering, undo, and storage
 
-This is a front-end practice project. A useful next step would be adding due dates or a way to group tasks by project.
+This is an evolving front-end project. The next planned improvements are due dates, priorities, search, and export/import.

@@ -1,65 +1,25 @@
-# ✅ Track-Your-Task
+# Track Your Progress
 
-**Track-Your-Task** is a simple and efficient task management web app built using HTML, CSS, and JavaScript. It helps users stay organized by allowing them to add, update, delete, and complete tasks with a smooth and responsive interface.
+A lightweight task-tracking web app built with HTML, CSS, and vanilla JavaScript.
 
-## 📌 Features
+## Features
+- Add tasks
+- Mark tasks as complete or pending
+- Edit and delete tasks
+- Filter tasks by all, completed, or pending status
+- Responsive layout for smaller screens
 
-- Add new tasks with ease  
-- Mark tasks as completed  
-- Delete tasks  
-- Filter tasks (All / Completed / Pending)  
-- Fully responsive and mobile-friendly design  
-- Clean and user-friendly interface
+## Run locally
+1. Clone this repository: **git clone https://github.com/Vikram2005-byte/Track-your-progress.git**
+2. Open the repository folder.
+3. Open **index.html** in a modern browser.
 
-## 🌐 Live Demo
+Alternatively, run **python -m http.server 8000** in the project folder and visit **http://localhost:8000**.
 
-*(Optional: Add link if deployed, e.g., GitHub Pages)*  
-[Live Demo](https://your-username.github.io/Track-Your-Task)
+## Project files
+- **index.html** — task entry and list interface
+- **style.css** — responsive styling
+- **script.js** — task operations and filters
 
-## 🛠️ Built With
-
-- HTML  
-- CSS  
-- JavaScript (Vanilla JS)
-
-## 🚀 Getting Started
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/Track-Your-Task.git
-   ```
-2. Navigate to the project folder:
-   ```bash
-   cd Track-Your-Task
-   ```
-3. Open the `index.html` file in your browser.
-
-## 📁 Project Structure
-
-```
-Track-Your-Task/
-├── index.html
-├── style.css
-├── script.js
-└── README.md
-```
-
-## ✨ Future Improvements
-
-- Task editing functionality  
-- Task deadline support  
-- Save tasks in localStorage (for persistence)  
-- Dark mode  
-- Progress bar or completion stats
-
-## 🤝 Contributing
-
-Feel free to fork this project and submit a pull request with your improvements.
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-Happy task tracking! 📝🚀
+## Data storage
+Tasks are currently held in page memory only. Refreshing or closing the page clears the task list; persistent browser storage or a backend has not been added yet.

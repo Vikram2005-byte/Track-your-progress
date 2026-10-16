@@ -24,7 +24,44 @@
                 <input type="text" id="new-task" name="task" maxlength="200" placeholder="What would you like to get done?" autocomplete="off" aria-describedby="task-hint">
                 <button type="button" id="add-task" class="button button-primary">Add task</button>
             </div>
+            <div class="task-due-entry">
+                <label for="task-due-date">Due date <span>(optional)</span></label>
+                <input type="date" id="task-due-date" name="due-date" aria-describedby="due-date-hint">
+                <p id="due-date-hint">Choose a deadline or click a date in the calendar.</p>
+            </div>
+
             <p id="task-hint" class="hint">Tip: press Enter to add a task.</p>
+
+            <section class="calendar-section" aria-labelledby="calendar-title">
+                <div class="calendar-header">
+                    <div>
+                        <h2 id="calendar-title">Calendar</h2>
+                        <p class="calendar-subtitle">Plan your tasks by date.</p>
+                    </div>
+                    <div class="calendar-navigation" aria-label="Calendar navigation">
+                        <button type="button" id="previous-month" class="calendar-nav-button" aria-label="Previous month">‹</button>
+                        <button type="button" id="today-button" class="calendar-today-button">Today</button>
+                        <button type="button" id="next-month" class="calendar-nav-button" aria-label="Next month">›</button>
+                    </div>
+                </div>
+
+                <div class="calendar-month-row">
+                    <h3 id="calendar-month-label" aria-live="polite"></h3>
+                    <button type="button" id="clear-date-filter" class="clear-date-filter" hidden>Clear date filter</button>
+                </div>
+
+                <div class="calendar-weekdays" aria-hidden="true">
+                    <span>Sun</span>
+                    <span>Mon</span>
+                    <span>Tue</span>
+                    <span>Wed</span>
+                    <span>Thu</span>
+                    <span>Fri</span>
+                    <span>Sat</span>
+                </div>
+                <div id="calendar-grid" class="calendar-grid" role="group" aria-label="Dates in the displayed month"></div>
+                <p class="calendar-help">Dates with a task count have scheduled tasks. Select a date to view its tasks and set it as the due date for a new task.</p>
+            </section>
 
             <div class="list-toolbar">
                 <h2>Your list</h2>

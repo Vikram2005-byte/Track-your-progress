@@ -3,21 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
+    <meta name="description" content="A simple browser-based to-do list for capturing tasks and keeping track of what is done.">
+    <meta name="theme-color" content="#f4f7fb">
+    <title>Track Your Progress — Task list</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h1>TRACK YOUR TASK</h1>
-        <input type="text" id="new-task" placeholder="Add a new task">
-        <button id="add-task">Add Task</button>
-        <div class="filters">
-            <button data-filter="all">All</button>
-            <button data-filter="completed">Completed</button>
-            <button data-filter="pending">Pending</button>
-        </div>
-        <ul id="task-list"></ul>
-    </div>
-    <script src="script.js"></script>
+    <main class="container">
+        <header class="page-header">
+            <p class="eyebrow">A little progress, every day</p>
+            <h1>Track your tasks</h1>
+            <p class="intro">Keep the next steps in one place. Add a task, work through your list, and mark things done as you go.</p>
+        </header>
+
+        <section class="task-panel" aria-labelledby="task-entry-title">
+            <h2 id="task-entry-title" class="visually-hidden">Add a task</h2>
+            <div class="task-entry">
+                <label for="new-task" class="visually-hidden">New task</label>
+                <input type="text" id="new-task" name="task" maxlength="200" placeholder="What would you like to get done?" autocomplete="off" aria-describedby="task-hint">
+                <button type="button" id="add-task" class="button button-primary">Add task</button>
+            </div>
+            <p id="task-hint" class="hint">Tip: press Enter to add a task.</p>
+
+            <div class="list-toolbar">
+                <h2>Your list</h2>
+                <div class="filters" role="group" aria-label="Filter tasks">
+                    <button type="button" data-filter="all" class="active" aria-pressed="true">All</button>
+                    <button type="button" data-filter="pending" aria-pressed="false">To do</button>
+                    <button type="button" data-filter="completed" aria-pressed="false">Done</button>
+                </div>
+            </div>
+
+            <p id="task-summary" class="task-summary" role="status" aria-live="polite"></p>
+            <ul id="task-list" aria-label="Your tasks"></ul>
+        </section>
+
+        <footer class="page-footer">
+            <p>Your tasks stay in this browser. There is no account or cloud sync.</p>
+        </footer>
+    </main>
 </body>
 </html>
